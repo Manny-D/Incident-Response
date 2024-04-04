@@ -4,16 +4,16 @@
 
 
 ## Introduction
-In the Azure HoneyNet project, I acted as a Cyber Incident Responder (CIR) in my Security Operation's Center (SOC), successfully resolving various security incidents. This report summarizes what I've learninged and highlights the effectiveness of the implemented incident response protocols for 4 of them.  
+Related to the [Azure HoneyNet project](https://github.com/Manny-D/Azure-Honeynet-SOC), in this project I acted as a Cyber Incident Responder (CIR) in my homelab Security Operation's Center (SOC), successfully triaging and resolving various security incidents. This report delves into 4 of them and summarizes what I've learned and highlights the effectiveness of the implemented incident response protocols.  
 
 <br>
 
 ## Scope
-This document details the 4 incidents, including its overview, potential consequences, mitigation strategies, and categorization.
+This document will details the following 4 incidents:
 - Incident ID: 29 - Brute Force ATTEMPT - Windows
 - Incident ID: 10 - Possible Privilege Escalation (Azure Key Vault Critical Credential Retrieval or Update)
-- Incident ID: 82 - Brute Force ATTEMPT - Linux Syslog
 - Incident ID: 9 - Malware Detected
+- Incident ID: 82 - Brute Force ATTEMPT - Linux Syslog
 
 <br>
 
@@ -26,7 +26,7 @@ This document details the 4 incidents, including its overview, potential consequ
 
 <b>Incident Summary</b>
 
-On January 6th at 11:25 UTC, Azure Sentinel flagged a brute-force attack (14,000+ attempts) from 14.192.144.254, targeting the "window-xxx" VM, indicating unauthorized access attempts.
+On January 6th at 11:25 UTC, Azure Sentinel flagged brute-force attacks (14,000+ attempts) from 14.192.144.254, targeting the "window-xxx" VM, indicating unauthorized access attempts a threat actor(s). 
 
 <br>
 
@@ -47,9 +47,9 @@ Due to the high volume of brute force attempts and triggered security alerts, th
 
 <b>Containment, Eradication and Recovery</b>
 
-1. <b>Enforce Network Restrictions</b>: Implement temporary network segmentation and adjust NSG rules to isolate "windows-vm" and limit unnecessary traffic.
+1. <b>Enforce Network Restrictions</b>: Implement temporary network segmentation and adjust NSG rules to isolate "window-xxx" VM and limit unnecessary traffic.
 2. <b>Strengthen Authentication</b>: Reset Credentials & Enable MFA: Enforce strong password policies and reset passwords for affected accounts. Additionally, enable multi-factor authentication (MFA) for all user accounts.
-3. <b>Scan for Malware & Monitor System</b>: Conduct Malware Scan & Monitor Activity: Perform a full virus scan on "windows-vm" to detect potential malware. Continuously monitor the system for any suspicious activity to ensure its ongoing security.
+3. <b>Scan for Malware & Monitor System</b>: Conduct Malware Scan & Monitor Activity: Perform a full virus scan on "window-xxx" VM to detect potential malware. Continuously monitor the system for any suspicious activity to ensure its ongoing security.
 
 <br>
 
@@ -86,41 +86,6 @@ This incident aligns with potential NIST 800-61 privilege escalation, requiring 
 
 <br>
 
-## Incident ID: 82 - Brute Force ATTEMPT - Linux Syslog Severity: Medium <br>
-
-<img width="1367" alt="Image 3" src="https://github.com/Manny-D/Incident-Response/assets/99146530/87cb5e0c-6dd1-455f-bc0a-567fe19e8cce"> <br>
-
-<br>
-
-<b>Incident Summary</b>
-
-Azure Sentinel flagged a brute-force attack on a Linux system on January 6th at 8:55 PM UTC, from a suspicious IP (61.177.172.160) linked to prior incidents.
-
-<br>
-
-<b>Impact Assessment</b>
-
-The brute force attack targeted a local account on the Linux machine, suggesting an attempt to gain unauthorized access privileges specific to that system.
-
-<br>
-
-<b>Detection and Analysis</b>
-
-1. <b>Validate Alerts & Isolate System</b>: Confirm Azure Sentinel alerts and isolate the affected Linux system to prevent further compromise.
-2. <b>Reset Compromised Account</b>: Reset the password for the targeted local Linux account.
-3. <b>Tighten Network Controls</b>: Lockdown Network Security Groups (NSGs) to restrict unauthorized access.
-4. <b>Investigate IP Address</b>: Analyze other incidents linked to IP 114.132.168.163 to determine the attack scope.
-
-<br>
-
-<b>Containment, Eradication and Recovery</b>
-
-1. <b>Quarantine & Investigate</b>: Isolate the infected workstation and potentially impacted systems for further analysis.
-2. <b>Remediate Workstation</b>: Restore the infected workstation to a confirmed clean state.
-3. <b>Review & Strengthen</b>: Analyze logs and security measures to identify vulnerabilities and prevent future incidents.
-
-<br>
-
 ## Incident ID: 9 - Malware Detected | Severity: High
 
 <img width="1305" alt="Image 4" src="https://github.com/Manny-D/Incident-Response/assets/99146530/bcbc03d8-a3ec-408e-82f0-bd2651530d63"> <br>
@@ -143,8 +108,45 @@ On January 5th at 6:05 PM UTC, Malware was detected on the "window-xxx" VM, pote
 
 <br>
 
-<b>Containment and Recovery</b>
+<b>Containment, Eradication and Recovery</b>
 
 1. Isolate infected workstation(s) and potentially impacted system(s).
 2. Restore workstation(s) to a clean state (using imaging or clean install).
 3. Bolster security to prevent future malware.
+
+<br>
+
+## Incident ID: 82 - Brute Force ATTEMPT - Linux Syslog Severity: Medium <br>
+
+<img width="1367" alt="Image 3" src="https://github.com/Manny-D/Incident-Response/assets/99146530/87cb5e0c-6dd1-455f-bc0a-567fe19e8cce"> <br>
+
+<br>
+
+<b>Incident Summary</b>
+
+Azure Sentinel flagged a brute-force attack on a Linux VM on January 6th at 8:55 PM UTC, from a suspicious IP (61.177.172.160) linked to prior incidents.
+
+<br>
+
+<b>Impact Assessment</b>
+
+The brute force attack targeted a local account on the Linux VM, suggesting an attempt to gain unauthorized access privileges specific to that system.
+
+<br>
+
+<b>Detection and Analysis</b>
+
+1. <b>Validate Alerts & Isolate System</b>: Confirm Azure Sentinel alerts and isolate the affected Linux VM to prevent further compromise.
+2. <b>Reset Compromised Account</b>: Reset the password for the targeted local Linux account.
+3. <b>Tighten Network Controls</b>: Lockdown Network Security Groups (NSGs) to restrict unauthorized access.
+4. <b>Investigate IP Address</b>: Analyze other incidents linked to IP 114.132.168.163 to determine the attack scope.
+
+<br>
+
+<b>Containment, Eradication and Recovery</b>
+
+1. <b>Quarantine & Investigate</b>: Isolate the infected workstation and potentially impacted systems for further analysis.
+2. <b>Remediate Workstation</b>: Restore the infected workstation to a confirmed clean state.
+3. <b>Review & Strengthen</b>: Analyze logs and security measures to identify vulnerabilities and prevent future incidents.
+
+<br>
