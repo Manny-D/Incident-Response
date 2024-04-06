@@ -4,7 +4,7 @@
 
 
 ## Introduction
-In this project, I acted as a Cyber Incident Responder (CIR) in my homelab, Security Operation's Center (SOC), successfully triaging and resolving various security incidents originating from my [Azure HoneyNet project](https://github.com/Manny-D/Azure-Honeynet-SOC). This report delves into 4 specific incidents and summarizes what I've learned, and highlights the effectiveness of the implemented incident response protocols.  
+In this project, I acted as a Cyber Incident Responder (CIR) within my homelab's Security Operation Center (SOC), successfully triaging and resolving various security incidents that originated from my [Azure HoneyNet project](https://github.com/Manny-D/Azure-Honeynet-SOC). This report analyzes 4 security incidents, showing key learnings and demonstrating the effectiveness of our incident response protocols.
 
 <br>
 
